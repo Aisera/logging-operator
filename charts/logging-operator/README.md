@@ -47,6 +47,7 @@ The following tables lists the configurable parameters of the logging-operator c
 | `image.repository`                                  | Container image repository                             | `banzaicloud/logging-operator` |
 | `image.tag`                                         | Container image tag                                    | `1.0.0`                        |
 | `image.pullPolicy`                                  | Container pull policy                                  | `IfNotPresent`                 |
+| `image.pullSecret`                                  | Container pull secret                                  |                                |
 | `nameOverride`                                      | Override name of app                                   | ``                             |
 | `fullnameOverride`                                  | Override full name of app                              | ``                             |
 | `watchNamespace`                                    | Namespace to watch fot LoggingOperator CRD             | ``                             |
