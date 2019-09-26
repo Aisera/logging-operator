@@ -14,6 +14,7 @@ var ElasticsearchDefaultValues = map[string]string{
 	"sslVersion":         "TLSv1_2",
 	"chunkLimit":         "2M",
 	"queueLimit":         "8",
+	"request_timeout":    "5",
 	"timekey":            "1h",
 	"timekey_wait":       "10m",
 	"timekey_use_utc":    "true",
@@ -28,6 +29,12 @@ var ElasticsearchDefaultValues = map[string]string{
 
 // ElasticsearchTemplate for Elasticsearch output plugin
 const ElasticsearchTemplate = `
+<filter {{ .pattern }}.**>
+  @type             dedot
+  de_dot            true
+  de_dot_separator  _
+  de_dot_nested     true
+</filter>
 <match {{ .pattern }}.**>
   @type elasticsearch
   @log_level {{ .logLevel }}
@@ -45,6 +52,7 @@ const ElasticsearchTemplate = `
   logstash_format {{ .logstashFormat }}
   logstash_prefix {{ .logstashPrefix }}
   reconnect_on_error true
+  request_timeout {{ .request_timeout }}
   {{- if .user }}
   user {{ .user }}
   {{- end}}
