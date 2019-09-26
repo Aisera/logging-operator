@@ -77,15 +77,6 @@ var fluentdInputTemplate = `
     tag $1.${tag_parts[0]}
   </rule>
 </match>
-
-<match *.kubernetes.**>
-  @type rewrite_tag_filter
-  <rule>
-    key $.kubernetes.labels.app
-    pattern ^(.+)$
-    tag $1.${tag_parts[0]}.${tag_parts[1]}
-  </rule>
-</match>
 `
 var fluentdOutputTemplate = `
 <match **>
