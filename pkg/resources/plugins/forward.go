@@ -32,6 +32,7 @@ var ForwardOutputDefaultValues = map[string]string{
 	"flush_interval":     "5s",
 	"flush_thread_count": "2",
 	"retry_forever":      "true",
+	"forward_tag":        "", // tag messages before sending them with forward.XYZ.
 	"tlsSharedKey":       "", // enables tls and must match with the shared key on the remote side
 	"tlsCACertFile":      "/fluentd/tls/caCert",
 	"tlsCertFile":        "/fluentd/tls/clientCert",
