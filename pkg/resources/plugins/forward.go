@@ -41,7 +41,28 @@ var ForwardOutputDefaultValues = map[string]string{
 
 // ForwardOutputTemplate for the ForwardOutput plugin
 const ForwardOutputTemplate = `
+{{ if .forward_tag -}}
+<filter {{ .pattern }}.** >
+  @type record_transformer
+  <record>
+    forward_tag "{{ .forward_tag }}"
+    original_tag ${tag}
+  </record>
+</filter>
+
 <match {{ .pattern }}.** >
+  @type rewrite_tag_filter
+  <rule>
+    key forward_tag
+    pattern ^(.+)$
+    tag forward.$1.${tag}
+  </rule>
+</match>
+
+<match forward.{{ .forward_tag }}.{{ .pattern }}.** >
+{{ else -}}
+<match {{ .pattern }}.** >
+{{ end -}}
   @type forward
 
   {{ if not (eq .tlsSharedKey "") -}}
