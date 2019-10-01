@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: banzaicloud/logging-operator
-  tag: 1.0.0
+  repository: aisera-docker.jfrog.io/logging-operator
+  tag: 1.0.0-aisera-beta1
   pullPolicy: IfNotPresent
 
 nameOverride: ""
