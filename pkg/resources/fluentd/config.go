@@ -20,6 +20,15 @@ var fluentdDefaultTemplate = `
 # include other config files
 @include /fluentd/etc/input.conf
 @include /fluentd/app-config/*
+<label @ERROR>
+  <match *.**>
+    @type file
+    path /buffers/error
+    <format>
+      @type json
+    </format>
+  </match>
+</label>
 @include /fluentd/etc/devnull.conf
 `
 var fluentdInputTemplate = `
